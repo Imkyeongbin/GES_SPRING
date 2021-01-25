@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+<bean id="vh7" class="sam07.VehicleImpl">
+   <constructor-arg value="임경빈"></constructor-arg>
+   <property name="rider" value="벤츠"></property>
+   <property name="speed" value="300"></property>
+
+
+</bean>
+
+</beans>

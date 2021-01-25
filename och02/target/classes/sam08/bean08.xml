@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+  <bean id="output" class="sam08.FileOutputter">
+       <property name="fileName" value="c:/log/msg1.txt"></property>
+  </bean>
+  <bean id="mb8" class="sam08.MessageBeanImpl">
+       <property name="name" value="임주혜"></property>
+       <property name="greet" value="클래식"></property>
+       <property name="output"><ref bean="output"></ref></property>
+  </bean>
+
+</beans>
