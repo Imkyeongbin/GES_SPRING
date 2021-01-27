@@ -10,6 +10,10 @@
 		<config>src/main/resources/applicationCTX.xml</config>
 		<config>src/main/resources/applicationCTX2.xml</config>
 		<config>src/main/resources/applicationCTX3.xml</config>
+		<config>src/main/resources/applicationCTX5.xml</config>
+		<config>src/main/resources/applicationCTX610.xml</config>
+		<config>src/main/resources/applicationCTX611.xml</config>
+		<config>src/main/resources/applicationCTX8.xml</config>
 	</configs>
 	<autoconfigs>
 	</autoconfigs>

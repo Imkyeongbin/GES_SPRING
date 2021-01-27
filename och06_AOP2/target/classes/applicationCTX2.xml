@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.2.xsd">
+	
+	<bean id="logAop" class="aop2.LogAop"/>
+	<!-- 디폴트로 false 값을 가진 proxy-target-class 애트리뷰트가 있음. 인터페이스 없이 클래스에 직접 프록시를 적용하려면 이 애트리뷰트를 true로 -->
+	<aop:config>
+		<aop:aspect id="logger" ref="logAop">
+			<aop:pointcut id="pub" expression="within(aop2.*)"/>
+			<aop:around pointcut-ref="pub" method="loggerAop"/>
+		</aop:aspect>
+		<aop:aspect id="logger" ref="logAop">
+			<aop:pointcut id="pub1" expression="within(aop2.*)"/>
+			<aop:before pointcut-ref="pub1" method="beforeAdvice"/>
+		</aop:aspect>
+		<aop:aspect id="logger" ref="logAop">
+			<aop:pointcut id="pub" expression="within(aop2.*)"/>
+			<aop:after-returning pointcut-ref="pub" method="afterReturningAdvice"/>
+		</aop:aspect>
+		<aop:aspect id="logger" ref="logAop">
+			<aop:pointcut id="pub" expression="within(aop2.*)"/>
+			<aop:after-throwing pointcut-ref="pub" method="afterThrowingAdvice"/>
+		</aop:aspect>
+		<aop:aspect id="logger" ref="logAop">
+			<aop:pointcut id="pub" expression="within(aop2.*)"/>
+			<aop:after pointcut-ref="pub" method="afterAdvice"/>
+		</aop:aspect>
+	</aop:config>
+	
+	<bean id="student" class="aop2.Student">
+		<property name="name" value="김춘추"/>
+		<property name="age" value="10"/>
+		<property name="gradeNum" value="3"/>
+		<property name="classNum" value="5"/>
+	</bean>
+	<bean id="worker" class="aop2.Worker">
+		<property name="name" value="김유신"/>
+		<property name="age" value="35"/>
+		<property name="job" value="개발자"/>
+	</bean>
+	
+</beans>

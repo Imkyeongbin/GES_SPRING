@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+	<bean id="student1" class = "DI06.Student">
+		<constructor-arg><value>선덕여왕</value></constructor-arg>
+		<constructor-arg><value>30</value></constructor-arg>
+		<constructor-arg>
+			<list>
+				<value>승마</value>
+				<value>정치</value>
+			</list>
+		</constructor-arg>
+		<property name="height"><value>162</value></property>
+		<property name="weight"><value>55</value></property>
+	
+	</bean>
+	<bean id="studentInfo1"  class="DI06.StudentInfo">
+		<property name="student">
+			<ref bean="student1"></ref>
+		</property>
+	
+	</bean>
+
+</beans>
