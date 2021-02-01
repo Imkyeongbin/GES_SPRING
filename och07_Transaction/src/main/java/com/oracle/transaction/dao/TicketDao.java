@@ -1,6 +1,13 @@
 package com.oracle.transaction.dao;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.PreparedStatementCreator;
+import org.springframework.transaction.TransactionStatus;
+import org.springframework.transaction.support.TransactionCallbackWithoutResult;
 import org.springframework.transaction.support.TransactionTemplate;
 
 import com.oracle.transaction.dto.TicketDto;
@@ -19,10 +26,44 @@ public class TicketDao {
 	public TicketDao() {
 		System.out.println(template);
 	}
-	public void buyTicket(TicketDto ticket) {
+	public void buyTicket(final TicketDto ticket) {
 		System.out.println("buyTicket()");
 		System.out.println("ticket.getConsumerId() : " + ticket.getConsumerId());
 		System.out.println("ticket.getAmount() : " + ticket.getAmount());
+		// DAO propagationBehavior 3
+		
+		transactionTemplate1.execute(new TransactionCallbackWithoutResult() {
+			
+			@Override
+			protected void doInTransactionWithoutResult(TransactionStatus status) {
+				template.update(new PreparedStatementCreator() {
+					
+					@Override
+					public PreparedStatement createPreparedStatement(Connection con) throws SQLException {
+						String query = "insert into card (consumerId, amount) values(?, ?)";
+						PreparedStatement pstmt = con.prepareStatement(query);
+						pstmt.setString(1, ticket.getConsumerId());
+						pstmt.setString(2, ticket.getAmount());
+						
+						return pstmt;
+					}
+				});
+				
+				
+				template.update(new PreparedStatementCreator() {
+					
+					@Override
+					public PreparedStatement createPreparedStatement(Connection con) throws SQLException {
+						String query = "insert into ticket (consumerId, countnum) values(?, ?)";
+						PreparedStatement pstmt = con.prepareStatement(query);
+						pstmt.setString(1, ticket.getConsumerId());
+						pstmt.setString(2, ticket.getAmount());
+						
+						return pstmt;
+					}
+				});
+			}
+		});
 		                              
 		
 	}

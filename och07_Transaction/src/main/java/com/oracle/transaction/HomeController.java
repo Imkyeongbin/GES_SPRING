@@ -9,10 +9,12 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.oracle.transaction.command.ITicketCommand;
+import com.oracle.transaction.dto.TicketDto;
 
 /**
  * Handles requests for the application home page.
@@ -47,11 +49,28 @@ public class HomeController {
 		return "home";
 	}
 	
-	@RequestMapping("/buy_ticket")
+	// @RequestMapping("/buy_ticket")
+	
+	@GetMapping(value="buy_ticket")
 	public String buy_ticket() {
 		logger.info("Welcome ");
 		return "buy_ticket";
 		
+	}
+	
+	@RequestMapping("/buy_ticket_card")
+	public String buy_ticket_card(TicketDto ticketDto, Model model) {
+		System.out.println("buy_ticket_card");
+		System.out.println("ticketDto : " + ticketDto.getConsumerId());
+		System.out.println("ticketDto : " + ticketDto.getAmount());
+		
+		//dao.buyTicket(ticketDto);
+		
+		ticketCommand.execute(ticketDto);
+		
+		model.addAttribute("ticketInfo", ticketDto);
+		
+		return "buy_ticket_end";
 	}
 	
 	
