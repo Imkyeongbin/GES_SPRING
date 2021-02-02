@@ -24,7 +24,7 @@
 			</tr>
 		</c:forEach>
 		<tr>
-			<td colspan="5"> <a href="write_biew">글작성</a> </td>
+			<td colspan="5"> <a href="write_view">글작성</a> </td>
 		</tr>
 	</table>
 </body>

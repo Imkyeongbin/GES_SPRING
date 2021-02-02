@@ -3,8 +3,8 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.oracle</groupId>
-	<artifactId>oMVCBoard</artifactId>
-	<name>och07_MVCBoard</name>
+	<artifactId>osecurity2</artifactId>
+	<name>och09_security2</name>
 	<packaging>war</packaging>
 	<version>1.0.0-BUILD-SNAPSHOT</version>
 	<properties>
