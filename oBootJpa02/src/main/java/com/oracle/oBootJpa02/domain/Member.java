@@ -9,26 +9,46 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 @Entity
 @SequenceGenerator( name = "member_seq_gen",
 					sequenceName = "member_seq_generator", //매핑할 DB 시퀀스 이름
-					initialValue = 1,
+					initialValue = 1, 
 					allocationSize = 1)
 @Table(name = "member1")
 public class Member {
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE,
-					generator = "member_seq_gen")
+                    generator = "member_seq_gen")
 	@Column(name = "member_id")
-	private Long id;
+	private Long   id;
 	@Column(name = "username")
 	private String name;
-	
+	 
 	@ManyToOne
 	@JoinColumn(name = "team_id")
 	private Team team;
 	
+	@Transient
+	private String teamname;
+	
+	@Transient
+	@Column(name = "team_id")
+	private Long teamid;
+	
+	public Long getTeamid() {
+		return teamid;
+	}
+	public void setTeamid(Long teamid) {
+		this.teamid = teamid;
+	}
+	public String getTeamname() {
+		return teamname;
+	}
+	public void setTeamname(String teamname) {
+		this.teamname = teamname;
+	}
 	public Long getId() {
 		return id;
 	}
@@ -41,4 +61,13 @@ public class Member {
 	public void setName(String name) {
 		this.name = name;
 	}
+	public Team getTeam() {
+		return team;
+	}
+	public void setTeam(Team team) {
+		this.team = team;
+	}
+	 
+	 
+	 
 }
