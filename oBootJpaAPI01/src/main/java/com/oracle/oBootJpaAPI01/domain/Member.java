@@ -1,4 +1,4 @@
-package com.oracle.oBootJpa02.domain;
+package com.oracle.oBootJpaAPI01.domain;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
