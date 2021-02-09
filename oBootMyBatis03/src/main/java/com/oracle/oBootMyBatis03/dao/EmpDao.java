@@ -8,5 +8,7 @@ public interface EmpDao {
 
 	List<Emp>	listEmp(Emp emp);
 	int			total();
+	Emp			detail(int empno);
+	int			update(Emp emp);
 	
 }
