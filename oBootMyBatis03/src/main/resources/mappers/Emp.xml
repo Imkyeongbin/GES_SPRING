@@ -19,6 +19,19 @@
 		, sal = #{sal}, <if test="comm!=null">comm = #{comm}, </if>
 		deptno=#{deptno} WHERE empno = #{empno}
 	</update>
-
+	<select id="selectManager" resultType="Emp">
+		SELECT * FROM emp WHERE empno
+		 in (SELECT mgr FROM emp)
+	
+	</select>
+	<insert id="insert">
+		INSERT INTO EMP values(#{empno},#{ename},#{job},#{mgr},
+		to_date(#{hiredate}, 'yy/mm/dd hh24:mi:ss'),#{sal},#{comm},#{deptno} )
+		
+	</insert>
+	<delete id="delete" parameterType="int">
+		DELETE FROM emp WHERE empno = #{empno}
+	</delete>
+	
 
 </mapper>

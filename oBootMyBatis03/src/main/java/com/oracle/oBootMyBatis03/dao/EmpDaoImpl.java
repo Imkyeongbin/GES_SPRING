@@ -60,4 +60,38 @@ public class EmpDaoImpl implements EmpDao {
 		return kkk;
 	}
 
+	@Override
+	public List<Emp> listManager() {
+		List<Emp> listEmpManager = null;
+		try {
+			listEmpManager = session.selectList("selectManager");
+		}catch (Exception e) {
+			System.out.println("EmpDaoImpl listManager Exception->"+ e.getMessage());
+		}
+
+		return listEmpManager;
+	}
+
+	@Override
+	public int insert(Emp emp) {
+		int result = 0;
+		try {
+			result = session.insert("insert",emp);
+		}catch (Exception e) {
+			System.out.println("EmpDaoImpl insert Exception->"+ e.getMessage());
+		}
+		return result;
+	}
+
+	@Override
+	public int delete(int empno) {
+		int result = 0;
+		try {
+			result = session.delete("delete",empno);
+		}catch (Exception e) {
+			System.out.println("EmpDaoImpl delete Exception->"+ e.getMessage());
+		}
+		return result;
+	}
+
 }
