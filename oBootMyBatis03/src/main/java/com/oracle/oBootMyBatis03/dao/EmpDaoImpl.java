@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.oracle.oBootMyBatis03.model.Emp;
+import com.oracle.oBootMyBatis03.model.EmpDept;
 
 @Repository
 public class EmpDaoImpl implements EmpDao {
@@ -94,4 +95,27 @@ public class EmpDaoImpl implements EmpDao {
 		return result;
 	}
 
+	@Override
+	public List<EmpDept> listEmpDept() {
+		List<EmpDept> empDept = null;
+		try {
+			empDept = session.selectList("TKlistEmpDept");
+			System.out.println("EmpDaoImpl listEmpDept empDept.size()->"+empDept.size());
+		} catch (Exception e) {
+			System.out.println("EmpDaoImpl listEmpDept Exception->"+ e.getMessage());
+		}
+		return empDept;
+	}
+
+	@Override
+	public List<EmpDept> listEmp(EmpDept empDept) {
+		
+		return session.selectList("TKlistEmpDept", empDept);
+	}
+
+	@Override
+	public String deptName(int deptNo) {
+		return session.selectOne("TKdeptName",deptNo);
+	}
+	
 }

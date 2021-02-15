@@ -30,7 +30,7 @@ public class DeptDaoImpl implements DeptDao {
 	@Override
 	public void selListDept(Map<String, Object> map) {
 		System.out.println("DeptDaoImpl selListDept procDeptList Before");
-		session.selectOne("procDeptList", map);
+		session.selectOne("ProcDeptList", map);
 		
 	}
 

@@ -11,6 +11,7 @@ import com.oracle.oBootMyBatis03.dao.EmpDao;
 import com.oracle.oBootMyBatis03.model.Dept;
 import com.oracle.oBootMyBatis03.model.DeptVO;
 import com.oracle.oBootMyBatis03.model.Emp;
+import com.oracle.oBootMyBatis03.model.EmpDept;
 
 @Service
 public class EmpServiceImpl implements EmpService {
@@ -87,6 +88,24 @@ public class EmpServiceImpl implements EmpService {
 		System.out.println("EmpServiceImpl selListDept Before");	
 		dd.selListDept(map);
 		
+	}
+
+	@Override
+	public List<EmpDept> listEmpDept() {
+		System.out.println("EmpServiceImpl listEmpDept Start...");	
+
+		return ed.listEmpDept();
+	}
+
+	@Override
+	public List<EmpDept> listEmp(EmpDept empDept) {
+		return ed.listEmp(empDept);
+	}
+
+	@Override
+	public String deptName(int deptno) {
+		// TODO Auto-generated method stub
+		return ed.deptName(deptno);
 	}
 
 }

@@ -33,5 +33,6 @@
 		DELETE FROM emp WHERE empno = #{empno}
 	</delete>
 	
+	
 
 </mapper>
