@@ -11,7 +11,7 @@ import com.oracle.oBootMyBatis03.model.EmpDept;
 
 @Repository
 public class EmpDaoImpl implements EmpDao {
-	//Mybatis 세션
+	// Mybatis 세션 
 	@Autowired
 	private SqlSession session;
 	
@@ -20,11 +20,10 @@ public class EmpDaoImpl implements EmpDao {
 		List<Emp> listEmp = null;
 		try {
 			listEmp = session.selectList("listAll", emp);
-			
-		}catch(Exception e) {
-			System.out.println("EmpDaoImpl listEmp e.getMessage()->"+ e.getMessage());
+		} catch (Exception e) {
+			System.out.println("EmpDaoImpl listEmp e.getMessage()->"+e.getMessage());
 		}
-		System.out.println("EmpDaoImpl listEmp listEmp.size()=>"+listEmp.size());
+		System.out.println("EmpDaoImpl listEmp listEmp.size()=>" + listEmp.size());
 		return listEmp;
 	}
 
@@ -32,32 +31,38 @@ public class EmpDaoImpl implements EmpDao {
 	public int total() {
 		// One Row
 		int totCount = session.selectOne("total");
-		System.out.println("EmpDaoImpl totCount=>"+totCount);
-		
+		System.out.println("EmpDaoImpl totCount=>" + totCount);
+
 		return totCount;
 	}
 
 	@Override
 	public Emp detail(int empno) {
-		Emp emp = null;
+		System.out.println("EmpDaoImpl detail start..");
+		
+		Emp emp = new Emp();
 		try {
-			//						mapper ID	, Parameter
-			emp = session.selectOne("kbEmpSelOne", empno);
-			System.out.println("EmpDaoImpl detail getEname->"+ emp.getEname());
-		}catch (Exception e) {
-			System.out.println("EmpDaoImpl detail e.getMessage()->"+ e.getMessage());
+			//                       mapper ID   ,   Parameter
+			emp = session.selectOne("tkEmpSelOne", empno);
+			System.out.println("EmpDaoImpl detail getEname->"+emp.getEname());
+		} catch (Exception e) {
+			System.out.println("EmpDaoImpl detail Exception->"+e.getMessage());
 		}
-		return emp;
+	return emp;
 	}
 
 	@Override
 	public int update(Emp emp) {
+		System.out.println("EmpDaoImpl update start..");
 		int kkk = 0;
 		try {
-			kkk  = session.update("TKempUpdate",emp);
-		}catch (Exception e) {
-			System.out.println("EmpDaoImpl update e.getMessage()->"+ e.getMessage());
+			// update/Delete 반환 행  Count , Insert -> 1
+			kkk = session.update("TKempUpdate",emp);
+		} catch (Exception e) {
+			System.out.println("EmpDaoImpl update Exception->"+e.getMessage());
 		}
+		
+		
 		return kkk;
 	}
 
@@ -66,50 +71,51 @@ public class EmpDaoImpl implements EmpDao {
 		List<Emp> listEmpManager = null;
 		try {
 			listEmpManager = session.selectList("selectManager");
-		}catch (Exception e) {
-			System.out.println("EmpDaoImpl listManager Exception->"+ e.getMessage());
+		} catch (Exception e) {
+			System.out.println("EmpDaoImpl listManager Exception->"+e.getMessage());
 		}
-
+		
+		
 		return listEmpManager;
 	}
 
 	@Override
 	public int insert(Emp emp) {
-		int result = 0;
-		try {
-			result = session.insert("insert",emp);
-		}catch (Exception e) {
-			System.out.println("EmpDaoImpl insert Exception->"+ e.getMessage());
-		}
-		return result;
+		// TODO Auto-generated method stub
+		return session.insert("insert",emp);
 	}
 
 	@Override
 	public int delete(int empno) {
-		int result = 0;
+		System.out.println("EmpDaoImpl update start..");
+		int kkk = 0;
 		try {
-			result = session.delete("delete",empno);
-		}catch (Exception e) {
-			System.out.println("EmpDaoImpl delete Exception->"+ e.getMessage());
+			// update/Delete 반환 행  Count , Insert -> 1
+			kkk  = session.delete("delete",empno);
+			System.out.println("EmpDaoImpl delete kkk->"+kkk);
+		} catch (Exception e) {
+			System.out.println("EmpDaoImpl delete Exception->"+e.getMessage());
 		}
-		return result;
+
+		// TODO Auto-generated method stub
+		return kkk;
 	}
 
 	@Override
 	public List<EmpDept> listEmpDept() {
+		System.out.println("EmpServiceImpl listEmpDept Start...");
 		List<EmpDept> empDept = null;
 		try {
-			empDept = session.selectList("TKlistEmpDept");
+			empDept  = session.selectList("TKlistEmpDept");
 			System.out.println("EmpDaoImpl listEmpDept empDept.size()->"+empDept.size());
 		} catch (Exception e) {
-			System.out.println("EmpDaoImpl listEmpDept Exception->"+ e.getMessage());
+			System.out.println("EmpDaoImpl delete Exception->"+e.getMessage());
 		}
 		return empDept;
 	}
 
 	@Override
 	public List<EmpDept> listEmp(EmpDept empDept) {
-		
 		return session.selectList("TKlistEmpDept", empDept);
 	}
 
@@ -117,5 +123,5 @@ public class EmpDaoImpl implements EmpDao {
 	public String deptName(int deptNo) {
 		return session.selectOne("TKdeptName",deptNo);
 	}
-	
+
 }

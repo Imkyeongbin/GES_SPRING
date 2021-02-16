@@ -70,7 +70,6 @@ public class EmpDept {
 	public void setLoc(String loc) {
 		this.loc = loc;
 	}
-	
-	
 
+	
 }

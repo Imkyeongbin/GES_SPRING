@@ -12,7 +12,26 @@
 <script type="text/javascript" src="js/httpRequest.js"></script>
 <script type="text/javascript"
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/3.0.1/handlebars.js"></script>
 
+<script id="dept-template" type="text/x-handlebars-template">
+<table>
+    <thead> 
+        <th>부서코드</th> 
+        <th>부서명</th> 
+        <th>위치</th> 
+    </thead> 
+    <tbody> 
+        {{#dept}} 
+        <tr> 
+            <td>{{deptno}}</td> 
+            <td>{{dname}}</td> 
+            <td>{{loc}}</a></td> 
+        </tr> 
+        {{/dept}} 
+    </tbody> 
+</table>
+</script>
 
 <script type="text/javascript">
     var contextPath='${pageContext.request.contextPath}';
@@ -27,37 +46,35 @@
 		console.log(Vdeptno);
 		/* alert("Vdeptno->"+Vdeptno); */
 		$.ajax({
-			url:"<%=context%>/getDeptName",
+			url:"<%=context%>/getDeptName",  
 			data:{deptno : Vdeptno},
 			dataType:'text',
 			success:function(data){
-				/* alert("success ajax Data"+data); */
-				$('#deptName').val(data);	/* input Tag */
+				/*  alert("success ajax Data"+data);  */
+				  $('#deptName').val(data);   /*  input Tag */
 				/* $('#deptName').text(data); */
-				$('#deptName').html(data);
-				$('#msg').html(data);		/* span id Tag */
+			/* 	  $('#deptName').html(data);   */
+				 $('#msg').html(data);         /* span  id Tag */
 				/* $('#deptName').val("이미 사용중인 아이디."); */
 			}
 		});
-	
 	}
 	
 	/* RestController TEST */
 	function getDept(Vdeptno){
-		console.log(Vdeptno);
-		alert("Vdeptno->"+Vdeptno);
+/* 		console.log(Vdeptno);
+ */		 alert("Vdeptno->"+Vdeptno);
 		$.ajax({
 			url:"<%=context%>/sendVO2",
 			data:{deptno : Vdeptno},
 			dataType:'json',
 			success:function(data){
-				/* alert(".ajax getDept Data"+data); */
-				str = data.firstName + " " + data.lastName + " " + data.mno;
-				alert(".ajax getDept str" +str);
-				$('#RestDept').val(str);	/* input Tag */
+				/*  alert(".ajax getDept Data"+data);  */
+				str   = data.firstName + " " + data.lastName + " " + data.mno;
+				alert(".ajax getDept str"+str); 
+				$('#RestDept').val(str);     /*  input Tag */
 			}
 		});
-		
 	}
 
 

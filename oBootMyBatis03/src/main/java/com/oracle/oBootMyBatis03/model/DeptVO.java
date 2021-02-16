@@ -1,12 +1,12 @@
 package com.oracle.oBootMyBatis03.model;
 
 public class DeptVO {
-	private int 	deptno;
-	private String 	dname;
-	private String 	loc;
-	private int 	odeptno;
-	private String 	odname;
-	private String 	oloc;
+	private int      deptno;
+	private String   dname;
+	private String   loc;
+	private int      odeptno;
+	private String   odname;
+	private String   oloc;
 	
 	public int getDeptno() {
 		return deptno;
@@ -44,4 +44,6 @@ public class DeptVO {
 	public void setOloc(String oloc) {
 		this.oloc = oloc;
 	}
+
+	
 }

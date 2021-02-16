@@ -1,9 +1,10 @@
 package com.oracle.oBootMyBatis03.model;
 
 public class SampleVO {
-	private Integer		mno;
-	private	String		firstName;
-	private String		lastName;
+	private Integer   mno;
+	private String    firstName;
+	private String    lastName;
+	
 	public Integer getMno() {
 		return mno;
 	}
@@ -22,5 +23,6 @@ public class SampleVO {
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
 	}
+
 	
 }

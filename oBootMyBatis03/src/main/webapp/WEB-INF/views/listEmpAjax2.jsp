@@ -32,29 +32,29 @@
 		str2   = "";
 
 		console.log("getListDept Run");
-		alert("getListDept Run->");
+		alert("getListDept Run->");  
 		$.ajax({
 			url:"<%=context%>/sendVO3",
 			dataType:'json',
 			success:function(data){
-				//alert(".ajax getDept Data"+data);
-				var jsondata = JSON.stringify(data);
-				$('#Dept_list').append(jsondata);
-				str += "<select name='dept'>";
-				$(data).each(
-					function(){
-						str2 = "<option value='"+this.deptno+"'> "+this.dname + "</option> ";
-						//str2 = " " + this.deptno + "'" +this.dname + "<br>";
-						str += str2;
-						
-					}	
-				);
-				str += "</select><p>"
-				$('#Dept_lst3').append(str);
-				alert(".ajax getListDept str->"+str);
-				//$('#Dept_list3').val(str);
+						//alert(".ajax getDept Data"+data);
+						var jsondata = JSON.stringify(data);
+	        			alert("jsondata->"+jsondata);
+						$('#Dept_list').append(jsondata);  
+						str  += "<select name='dept'>";
+						$(data).each(
+							function(){
+								str2  = "<option value='"+this.deptno + "'> "+this.dname  + "</option> "; 
+								//str2  = " " + this.deptno + "' " +this.dname  + "<br>";
+								str  += str2 ;
+							}
+						);
+						str += "</select><p>"
+						$('#Dept_list3').append(str);
+						alert(".ajax getListDept str->"+str); 
+						//$('#Dept_list3').val(str);    
 			}
-		})
+		});
 	}
 	
 	function getDeptDelete(Vindex){
