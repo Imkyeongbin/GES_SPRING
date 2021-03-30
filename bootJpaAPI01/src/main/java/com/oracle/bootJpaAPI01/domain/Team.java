@@ -1,4 +1,4 @@
-package com.oracle.oBootJpaAPI01.domain;
+package com.oracle.bootJpaAPI01.domain;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -9,18 +9,19 @@ import javax.persistence.SequenceGenerator;
 
 @Entity
 @SequenceGenerator(name = "team_seq_gen",
-                   sequenceName =  "team_seq_generator", //매핑할 DB 시퀀스 이름
+                   sequenceName = "team_seq_generator", //매핑할 DB 시퀀스 이름
                    initialValue = 1,
                    allocationSize = 1
-		          )
+		           )
 public class Team {
-	@Id
+	@Id 
 	@GeneratedValue(strategy = GenerationType.SEQUENCE,
 	                generator = "team_seq_gen")
 	private Long team_id;
-	@Column(name = "teamname", length = 100)
+	@Column(name = "teamname")
 	private String name;
 	
+
 	public Long getTeam_id() {
 		return team_id;
 	}
